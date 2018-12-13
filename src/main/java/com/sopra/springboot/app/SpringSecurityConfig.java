@@ -1,14 +1,42 @@
 package com.sopra.springboot.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 
 @Configuration
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter 
-{
-	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception
-	{
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+	http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**","/listar/**").permitAll()
+							.antMatchers("/ver/**").hasAnyRole("USER")
+							.antMatchers("/uploads/**").hasAnyRole("USER")
+							.antMatchers("/form/**").hasAnyRole("ADMIN")
+							.antMatchers("/factura/**").hasAnyRole("ADMIN")
+							.antMatchers("/eliminar/**").hasAnyRole("ADMIN")
+							.anyRequest().authenticated()
+							.and()
+							.formLogin().loginPage("/login")
+							.permitAll()
+							.and()
+							.logout().permitAll();
+	}	
+	
+	@Autowired
+	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
 		
+		UserBuilder users = User.withDefaultPasswordEncoder ();
+		
+		//CREAMOS 2 USUARIOS EN MEMORIA UNO CON CADA ROL DE LOS QUE VAMOS A UTILIZAR PARA PROBAR
+		build.inMemoryAuthentication()
+			 .withUser(users.username("admin").password("12345").roles("ADMIN", "USER"))
+			 .withUser(users.username("juan").password("12345").roles("USER"));
 	}
 }
