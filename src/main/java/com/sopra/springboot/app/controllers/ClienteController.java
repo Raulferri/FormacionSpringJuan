@@ -202,7 +202,11 @@ public class ClienteController {
 			cliente.setFoto(uniqueFilename);
 
 		}
-
+		else
+		{
+			cliente.setFoto("");
+		}
+		
 		String mensajeFlash = (cliente.getId() != null) ? messageSource.getMessage("text.cliente.flash.editar.success", null, locale) : messageSource.getMessage("text.cliente.flash.crear.success", null, locale);
 
 		clienteService.save(cliente);
@@ -210,6 +214,7 @@ public class ClienteController {
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:listar";
 	}
+	
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/eliminar/{id}")
