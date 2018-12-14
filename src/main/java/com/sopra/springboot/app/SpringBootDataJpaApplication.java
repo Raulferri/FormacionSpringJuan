@@ -23,7 +23,9 @@ public class SpringBootDataJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		
+        /* DESCOMENTAR ESTO SI QUEREMOS QUE NOS DESTRUYA 
+		LA CARPETA UPLOADS CADA VEZ QUE ARRANQUE Y PARE */
 //		uploadFileService.deleteAll();
 //		uploadFileService.init();
 		

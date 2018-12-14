@@ -10,41 +10,33 @@
 
 	<name>spring-boot-data-jpa</name>
 	<description>Demo project for Spring Boot</description>
-
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
+		<version>2.0.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-
+	
 	<dependencies>
-		<dependency>
-		    <groupId>com.github.librepdf</groupId>
-		    <artifactId>openpdf</artifactId>
-		    <version>1.2.7</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -53,12 +45,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-
+        <!-- DevTools, permite recargar el front sin necesidad de recargar el servidor, es más comodo sin duda que Spring Loaded -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Spring Loaded hace lo mismo que DevTools, permite recargar el front sin necesidad de recargar el servidor
+			 Para ello deberemos setear en el 'application.properties' la siguiente propiedad 'spring.thymeleaf.cache=false' -->
+<!-- 		<dependency> -->
+<!--     		<groupId>org.springframework</groupId> -->
+<!--     		<artifactId>springloaded</artifactId> -->
+<!--     	</dependency> -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -74,8 +72,32 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.librepdf</groupId>
+			<artifactId>openpdf</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -84,7 +106,7 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -95,6 +117,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-milestones</id>
@@ -105,4 +128,5 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
 </project>
